@@ -1,1 +1,7 @@
 ./app/__sapper__
+/node_modules/
+/src/node_modules/@sapper/
+yarn-error.log
+/__sapper__/
+.DS_Store
+./app/ecosystem.config.js

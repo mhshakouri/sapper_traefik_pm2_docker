@@ -1,18 +1,22 @@
-version: '2'
+version: '23'
 services:
-    sapperApp:
-        image: jbracho/pm2-sapper:1.0
-        container_name: sapperApp
+    sapperapp:
+        build:
+          context: .
+          dockerfile: Dockerfile
+        container_name: sapperapp
         restart: always
         volumes:
-            - ./app/:/usr/src/app/sapperApp/
-            - ./pm2-sapper/:/usr/src/app/
+          - ./app:/usr/src/app/
+          - ./ecosystem.config.js/:/usr/src/app/ecosystem.config.js
         networks:
             - proxy
+        expose:
+            - "3000"
         labels:
             - "traefik.enable=true"
             - "traefik.http.routers.sapperApp.entrypoints=https"
-            - "traefik.http.routers.sapperApp.rule=Host(`example.com`, `www.example.com`)"
+            - "traefik.http.routers.sapperApp.rule=Host(`wizardpalette.com`, `www.wizardpalette.com`)"
             - "traefik.http.services.sapperApp.loadbalancer.server.port=3000"
             - "traefik.docker.network=proxy"
   
